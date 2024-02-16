@@ -10,7 +10,7 @@ import (
 // default to zero. Parameters can have sub-parameters separated by colons.
 //
 // Any non-parameter bytes are ignored. This includes bytes that are not in the
-// range of 0x30-0x3F.
+// range of 0x30-0x3B.
 //
 // See ECMA-48 § 5.4.1.
 func Params(p []byte) [][]uint {
@@ -18,9 +18,9 @@ func Params(p []byte) [][]uint {
 		return [][]uint{}
 	}
 
-	// Filter out non-parameter bytes i.e. non 0x30-0x3F.
+	// Filter out non-parameter bytes i.e. non 0x30-0x3B.
 	p = bytes.TrimFunc(p, func(r rune) bool {
-		return r < 0x30 || r > 0x3F
+		return r < 0x30 || r > 0x3B
 	})
 
 	parts := bytes.Split(p, []byte{';'})
