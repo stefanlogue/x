@@ -80,3 +80,20 @@ func DeleteLine(n int) string {
 	}
 	return "\x1b" + "[" + s + "M"
 }
+
+// SetScrollingRegion (DECSTBM) sets the top and bottom margins for the scrolling
+// region. The default is the entire screen.
+//
+//	CSI <top>;<bottom>r
+//
+// https://vt100.net/docs/vt510-rm/DECSTBM.html
+func SetScrollingRegion(t, b int) string {
+	var ts, bs string
+	if t > 1 {
+		ts = strconv.Itoa(t)
+	}
+	if b > 1 {
+		bs = strconv.Itoa(b)
+	}
+	return "\x1b" + "[" + ts + ";" + bs + "r"
+}
