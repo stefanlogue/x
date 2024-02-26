@@ -10,6 +10,8 @@ import "strconv"
 //	 3: Clear entire screen and delete all lines saved in the scrollback buffer.
 //
 //	CSI <n> J
+//
+// See: https://vt100.net/docs/vt510-rm/ED.html
 func EraseDisplay(n int) string {
 	if n < 0 {
 		n = 0
@@ -26,6 +28,8 @@ func EraseDisplay(n int) string {
 // The cursor position is not affected.
 //
 //	CSI <n> K
+//
+// See: https://vt100.net/docs/vt510-rm/EL.html
 func EraseLine(n int) string {
 	if n < 0 {
 		n = 0
@@ -37,6 +41,8 @@ func EraseLine(n int) string {
 // bottom of the screen.
 //
 //	CSI <n> S
+//
+// See: https://vt100.net/docs/vt510-rm/SU.html
 func ScrollUp(n int) string {
 	var s string
 	if n > 1 {
@@ -49,6 +55,8 @@ func ScrollUp(n int) string {
 // top of the screen.
 //
 //	CSI <n> T
+//
+// See: https://vt100.net/docs/vt510-rm/SD.html
 func ScrollDown(n int) string {
 	var s string
 	if n > 1 {
@@ -61,6 +69,8 @@ func ScrollDown(n int) string {
 // Existing lines are moved down.
 //
 //	CSI <n> L
+//
+// See: https://vt100.net/docs/vt510-rm/IL.html
 func InsertLine(n int) string {
 	var s string
 	if n > 1 {
@@ -73,6 +83,8 @@ func InsertLine(n int) string {
 // lines are moved up.
 //
 //	CSI <n> M
+//
+// See: https://vt100.net/docs/vt510-rm/DL.html
 func DeleteLine(n int) string {
 	var s string
 	if n > 1 {
@@ -86,7 +98,7 @@ func DeleteLine(n int) string {
 //
 //	CSI <top>;<bottom>r
 //
-// https://vt100.net/docs/vt510-rm/DECSTBM.html
+// See: https://vt100.net/docs/vt510-rm/DECSTBM.html
 func SetScrollingRegion(t, b int) string {
 	var ts, bs string
 	if t > 1 {

@@ -3,7 +3,7 @@ package kitty
 import "strconv"
 
 // Kitty keyboard protocol progressive enhancement flags.
-// See https://sw.kovidgoyal.net/kitty/keyboard-protocol/#progressive-enhancement
+// See: https://sw.kovidgoyal.net/kitty/keyboard-protocol/#progressive-enhancement
 const (
 	DisambiguateEscapeCodes = 1 << iota
 	ReportEventTypes
@@ -16,6 +16,8 @@ const (
 
 // Request is a sequence to request the terminal Kitty keyboard protocol
 // enabled flags.
+//
+// See: https://sw.kovidgoyal.net/kitty/keyboard-protocol/
 const Request = "\x1b[?u"
 
 // Push returns a sequence to push the given flags to the terminal Kitty
