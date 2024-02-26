@@ -18,30 +18,32 @@ const (
 // enabled flags.
 const Request = "\x1b[?u"
 
-// Enable returns a sequence to enable the given flags.
+// Push returns a sequence to push the given flags to the terminal Kitty
+// Keyboard stack.
 //
 //	CSI > flags u
 //
 // See https://sw.kovidgoyal.net/kitty/keyboard-protocol/#progressive-enhancement
-func Enable(flags int) string {
-	var n string
+func Push(flags int) string {
+	var f string
 	if flags > 0 {
-		n = strconv.Itoa(flags)
+		f = strconv.Itoa(flags)
 	}
 
-	return "\x1b[>" + n + "u"
+	return "\x1b" + "[" + ">" + f + "u"
 }
 
-// Disable returns a sequence to disable the given flags.
+// Pop returns a sequence to pop n number of flags from the terminal Kitty
+// Keyboard stack.
 //
 //	CSI < flags u
 //
 // See https://sw.kovidgoyal.net/kitty/keyboard-protocol/#progressive-enhancement
-func Disable(flags int) string {
-	var n string
-	if flags > 0 {
-		n = strconv.Itoa(flags)
+func Pop(n int) string {
+	var num string
+	if n > 0 {
+		num = strconv.Itoa(n)
 	}
 
-	return "\x1b[<" + n + "u"
+	return "\x1b" + "[" + "<" + num + "u"
 }
